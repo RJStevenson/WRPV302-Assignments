@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Background">#272727</color>
+    <color name="BackGroundSquares">#6C6C6C</color>
+    <color name="TextPlayer">#FFFFFF</color>
+    <color name="TextSquares">#00FF83</color>
+    <color name="P1">#3D5AFE</color>
+    <color name="P2">#FF3D00</color>
+</resources>

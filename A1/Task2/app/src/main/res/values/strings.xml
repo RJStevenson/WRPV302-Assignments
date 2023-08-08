@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Assignment1Task2</string>
+    <string name="P1I">Player1: </string>
+    <string name="P2I">Player2: </string>
+    <string name="P1S">P</string>
+    <string name="P2S">P</string>
+
+</resources>
