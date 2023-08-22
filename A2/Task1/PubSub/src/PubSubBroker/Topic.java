@@ -5,18 +5,17 @@ import java.util.List;
 
 class Topic<T> {
     public String Name;
-    public T Data;
-    public List<Subscriber<T>> Subscribers;
+    public Class Type;
+    public List<Subscriber> Subscribers;
 
     //public ObjectInstance Publisher;
 
-    public Topic(String name, T data)
+    public Topic(String name, Class type)
     {
+        Type = type;
         Subscribers = new ArrayList<>();
-        this.Data = data;
-        this.Name = name;
+        Name = name;
     }
-
     public boolean AddSub(Subscriber sub)
     {
         if(IsInList(sub)==false) {
@@ -35,13 +34,17 @@ class Topic<T> {
         }
     }
 
-    public boolean Publish()
+    public boolean Publish(Object data)
     {
+        if(!data.getClass().equals(this.Type))
+        {
+            return false;
+        }
         boolean value = true;
         for (int i = 0; i < Subscribers.size(); i++) {
 
             try {
-                Subscribers.get(i).OnMessageReceived(Data);
+                Subscribers.get(i).OnMessageReceived(data);
             } catch (Exception e) {
                value = false;
             }
@@ -49,7 +52,7 @@ class Topic<T> {
         return  value;
     }
 
-    private boolean IsInList(Subscriber<T> sub)
+    private boolean IsInList(Subscriber sub)
     {
         for (int i = 0; i < Subscribers.size(); i++) {
             if(Subscribers.get(i).equals(sub))

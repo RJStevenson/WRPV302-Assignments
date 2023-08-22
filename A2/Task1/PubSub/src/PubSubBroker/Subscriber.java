@@ -1,6 +1,6 @@
 package PubSubBroker;
 
 @FunctionalInterface
-public interface Subscriber<T> {
-    void OnMessageReceived(T Data);
+public interface Subscriber {
+    void OnMessageReceived(Object Data);
 }

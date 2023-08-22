@@ -6,7 +6,7 @@ import javax.management.ObjectInstance;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PubSubBroker<T> {
+public class PubSubBroker {
     private static PubSubBroker BrokerInstance;
     private Map<String, Topic> Topics;
 
@@ -31,15 +31,14 @@ public class PubSubBroker<T> {
         return false;
     }
 
-    public boolean Publish(String TopicName, T Data)
+    public boolean Publish(String TopicName, Object data)
     {
         Topic temp = Topics.get(TopicName);
-        if(temp==null)
+        if(temp==null || !temp.Type.equals(data.getClass()))
         {
             return false;
         }
-        temp.Data= Data;
-        return temp.Publish();
+        return temp.Publish(data);
     }
 
     public boolean UnSubscribe(Subscriber subscriber, String TopicName)
@@ -53,10 +52,10 @@ public class PubSubBroker<T> {
         return true;
     }
 
-    public boolean RegisterTopic(String TopicName, T data)
+    public boolean RegisterTopic(String TopicName, Class type)
     {
         if(Topics.get(TopicName)==null) {
-            Topics.put(TopicName, new Topic(TopicName, data));
+            Topics.put(TopicName, new Topic(TopicName, type));
             return true;
         }
         else
@@ -65,34 +64,4 @@ public class PubSubBroker<T> {
         }
     }
 
-/**
-    public Result SubscribeWithResult(String TopicName, Subscriber OnMessageReceived)
-    {
-        Topic topic = Topics.get(TopicName);
-        if (topic!=null) {
-            topic.Subscribers.add(OnMessageReceived);
-            return new Result<Topic>(topic);
-        }
-        return  new Result(false, "Topic not found with name " + TopicName);
-    }
-
-    public Result PublishWithResult(String TopicName, T Data)
-    {
-        return null;
-
-    }
-
-
-    public Result RegisterTopicWithResult(String TopicName, T data)
-    {
-        if(Topics.get(TopicName)==null) {
-            Topics.put(TopicName, new Topic(TopicName, data));
-            return new Result(data);
-        }
-        else
-        {
-            return new Result(false, "Topic Already Exists with name: " + TopicName);
-        }
-    }
-    **//
 }
