@@ -4,6 +4,7 @@ package adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,12 +43,28 @@ public class  CustomRecyleAdapter extends RecyclerView.Adapter<CustomRecyleAdapt
         TextView nam ;
         TextView num;
         ImageView img;
+
+
+        ImageView img2;
+        Button btnedit;
+        Button btnmessage;
+        Button btncall;
+
         public ContactViewHolder(@NonNull View itemView) {
             super(itemView);
 
              nam = (TextView) itemView.findViewById(R.id.AvatarName);
              num = (TextView) itemView.findViewById(R.id.AvatarCellNumber);
              img = (ImageView) itemView.findViewById(R.id.AvatarImgView);
+
+
+             /**
+            img = (ImageView) itemView.findViewById(R.id.AvatarImgViewBack);
+            btnedit = (Button) itemView.findViewById(R.id.btnedit);
+            btnmessage = (Button) itemView.findViewById(R.id.btnmessage);
+            btncall = (Button) itemView.findViewById(R.id.btndial);
+
+              **/
         }
 
         public void SetContact(ContactItem contact)
@@ -58,6 +75,7 @@ public class  CustomRecyleAdapter extends RecyclerView.Adapter<CustomRecyleAdapt
             num.setText(Contact.Number);
             img.setImageResource(itemView.getResources().getIdentifier(Contact.Img,"drawable", itemView.getContext().getPackageName()));
             //img.setImageResource(itemView.getResources().getIdentifier(Contact.Img,"drawable", itemView.getContext().getPackageName()));
+
         }
     }
 

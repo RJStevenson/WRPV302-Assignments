@@ -28,7 +28,7 @@ public class contactslist extends AppCompatActivity {
         simplelist = (RecyclerView) findViewById(R.id.recycle);
         //CustomAdapter myadapt = new CustomAdapter(this, R.layout.contactcardfront, datalist);
 
-        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(1, LinearLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL);
         simplelist.setLayoutManager(staggeredGridLayoutManager);
 
         CustomRecyleAdapter mine = new CustomRecyleAdapter(datalist);
